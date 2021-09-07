@@ -1,12 +1,10 @@
-import React, { useState  } from 'react';
+import React, { Component } from 'react';
 import './index.css';
 import Person from './person.js';
-//In react version 16.8 react introduced this way(react hooks) to manage State and create functional component but setState()>Component>react was the traditional way to manage state and create class based components 
-//personsState is totally replaced by setPersonState we have to call useState() in react hook or functional components in this example
-const app =() => {
-  const [personsState, setPersonState] = useState({
-   //
-    persons:[
+class App extends Component {
+// a We can ess special property 'state' from App class which extends from Components (exported by react library)
+  state= {
+    persons: [
       {
         name: 'Gazibur Rahman',
         age: 21,
@@ -32,10 +30,9 @@ const app =() => {
         place: 'nagaon',
       },
     ],
-   outherValue:'It is my other value just for example'
-  });
-  const switchdataHandler = () => {
-    setPersonState({
+  };
+  switchdataHandler = () => {
+    this.setState({
       persons: [
         {
           name: 'Gazi Mamu',
@@ -64,38 +61,40 @@ const app =() => {
       ],
     });
   };
-  return (
-    <div className="App">
-      <h1>Waalaikumas-salam-warahmatullah-e-wabarakatuhu</h1>
-      <button className="btn" onClick={switchdataHandler}>
-        Change dom
-      </button>
-      <Person
-        name={personsState.persons[0].name}
-        gender={personsState.persons[0].gender}
-        age={personsState.persons[0].age}>
-        I am from {personsState.persons[0].place } and {personsState.outherValue}
-      </Person>
-      <Person
-        name={personsState.persons[1].name}
-        gender={personsState.persons[1].gender}
-        age={personsState.persons[1].age}>
-        I am from {personsState.persons[1].place}
-      </Person>
-      <Person
-        name={personsState.persons[2].name}
-        gender={personsState.persons[2].gender}
-        age={personsState.persons[2].age}>
-        I am from {personsState.persons[2].place}
-      </Person>
-      <Person
-        name={personsState.persons[3].name}
-        gender={personsState.persons[3].gender}
-        age={personsState.persons[3].age}>
-        I am from {personsState.persons[3].place}
-      </Person>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="App">
+        <h1>Waalaikumas-salam-warahmatullah-e-wabarakatuhu</h1>
+        <button className="btn" onClick={this.switchdataHandler}>
+          Change dom
+        </button>
+        <Person
+          name={this.state.persons[0].name}
+          gender={this.state.persons[0].gender}
+          age={this.state.persons[0].age}>
+          I am from {this.state.persons[0].place}
+        </Person>
+        <Person
+          name={this.state.persons[1].name}
+          gender={this.state.persons[1].gender}
+          age={this.state.persons[1].age}>
+          I am from {this.state.persons[1].place}
+        </Person>
+        <Person
+          name={this.state.persons[2].name}
+          gender={this.state.persons[2].gender}
+          age={this.state.persons[2].age}>
+          I am from {this.state.persons[2].place}
+        </Person>
+        <Person
+          name={this.state.persons[3].name}
+          gender={this.state.persons[3].gender}
+          age={this.state.persons[3].age}>
+          I am from {this.state.persons[3].place}
+        </Person>
+      </div>
+    );
+  }
+}
 
-export default app;
+export default App;
