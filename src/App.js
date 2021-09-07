@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import Person from './person.js';
+//This methods was the only or traditional and established method to create class based components and managing state of components before react 16.8 (before react hooks) 
 class App extends Component {
 // a We can ess special property 'state' from App class which extends from Components (exported by react library)
   state= {
@@ -32,6 +33,7 @@ class App extends Component {
     ],
   };
   switchdataHandler = () => {
+//In this.setState() merges new data with existing data (but In useState() with functional components (react hooks) old data completely replaced by new state data)
     this.setState({
       persons: [
         {
