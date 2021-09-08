@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './index.css';
 import Person from './person.js';
-//This methods was the only or traditional and established method to create class based components and managing state of components before react 16.8 (before react hooks) 
 class App extends Component {
-// a We can ess special property 'state' from App class which extends from Components (exported by react library)
-  state= {
+  state = {
     persons: [
       {
         name: 'Gazibur Rahman',
@@ -32,12 +30,11 @@ class App extends Component {
       },
     ],
   };
-  switchdataHandler = () => {
-//In this.setState() merges new data with existing data (but In useState() with functional components (react hooks) old data completely replaced by new state data)
+  switchdataHandler = NewName => {
     this.setState({
       persons: [
         {
-          name: 'Gazi Mamu',
+          name: NewName,
           age: 16,
           gender: 'male',
           place: 'Muwamari',
@@ -63,27 +60,67 @@ class App extends Component {
       ],
     });
   };
+  inputHandler = e => {
+    this.setState({
+      persons: [
+        {
+          name: e.target.value,
+          age: 16,
+          gender: 'male',
+          place: 'Muwamari',
+        },
+        {
+          name: 'Rofique',
+          age: 19,
+          gender: 'male',
+          place: 'moirabari',
+        },
+        {
+          name: 'azizulhoque',
+          age: 31,
+          gender: 'male',
+          place: 'morigaon',
+        },
+        {
+          name: 'johura khatun',
+          age: 55,
+          gender: 'female',
+          place: 'nagaon',
+        },
+      ],
+    });
+  };
+//Common way:--
+  // click={this.switchdataHandler.bind(this,'Junaid')}
+  // and alternative way:--
+  // click={()=>this.switchdataHandler("Gazibur Rahman")}
   render() {
     return (
       <div className="App">
         <h1>Waalaikumas-salam-warahmatullah-e-wabarakatuhu</h1>
-        <button className="btn" onClick={this.switchdataHandler}>
+        <button
+          className="btn"
+          onClick={() => this.switchdataHandler('Max!!!')}>
           Change dom
         </button>
         <Person
           name={this.state.persons[0].name}
           gender={this.state.persons[0].gender}
+          click={() => this.switchdataHandler('Gazibur Rahman')}
+          change={this.inputHandler}
           age={this.state.persons[0].age}>
           I am from {this.state.persons[0].place}
         </Person>
         <Person
           name={this.state.persons[1].name}
+          click={this.switchdataHandler.bind(this, 'Junaid')}
           gender={this.state.persons[1].gender}
           age={this.state.persons[1].age}>
           I am from {this.state.persons[1].place}
         </Person>
         <Person
           name={this.state.persons[2].name}
+          click={() => this.switchdataHandler('Maaa!!')}
           gender={this.state.persons[2].gender}
           age={this.state.persons[2].age}>
           I am from {this.state.persons[2].place}
