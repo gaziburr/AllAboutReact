@@ -1,9 +1,10 @@
 import React from 'react';
+import './Person.css';
 const person = props => {
   return (
-    <div>
-      <button className="btn" onClick={props.click}>
-        combtn
+    <div className="Person">
+      <button className="btn" style={props.style} onClick={props.click}>
+        btn_Gazi
       </button>
       <p>
         hello I am {props.name} and my age is {props.age} and my gender is
