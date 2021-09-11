@@ -138,7 +138,7 @@ class App extends Component {
               click={() => this.switchdataHandler('Maaa!!')}
               style={style}
               gender={this.state.persons[2].gender}
-              age={this.state.persons[2].age}>
+              <age></age>this.state.persons[2].age}>
               I am from {this.state.persons[2].place}
             </Person>
             <Person
@@ -150,7 +150,7 @@ class App extends Component {
             </Person>
           </div>
         ) : (
-           <h1>click Here -&gt;👆</h1>
+          <h1>click Here -&gt;👆</h1>
         )}
       </div>
     );
