@@ -7,8 +7,7 @@ const person = props => {
         btn_Gazi
       </button>
       <p>
-        hello I am {props.name} and my age is {props.age} and my gender is
-        {props.gender}
+        hello I am {props.name} and my age is {props.age} and my gender is {props.gender}
       </p>
       <p onClick={props.click}> {props.children}</p>
       <input
