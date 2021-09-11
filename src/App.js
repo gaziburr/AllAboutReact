@@ -105,44 +105,46 @@ class App extends Component {
       marginLeft: '40% ',
       backgroundColor: 'green',
     };
-   let persons= null
+    let persons = null;
 
-   if(this.state.showPerson){
-    persons=(<div className="Persons">
-            <Person
-              style={style}
-              name={this.state.persons[0].name}
-              gender={this.state.persons[0].gender}
-              click={() => this.switchdataHandler('Gazibur Rahman')}
-              change={this.inputHandler}
-              age={this.state.persons[0].age}>
-              I am from {this.state.persons[0].place}
-            </Person>
-            <Person
-              style={style}
-              name={this.state.persons[1].name}
-              click={this.switchdataHandler.bind(this, 'Junaid')}
-              gender={this.state.persons[1].gender}
-              age={this.state.persons[1].age}>
-              I am from {this.state.persons[1].place}
-            </Person>
-            <Person
-              name={this.state.persons[2].name}
-              click={() => this.switchdataHandler('Maaa!!')}
-              style={style}
-              gender={this.state.persons[2].gender}
-              age={this.state.persons[2].age}>
-              I am from {this.state.persons[2].place}
-            </Person>
-            <Person
-              name={this.state.persons[3].name}
-              style={style}
-              gender={this.state.persons[3].gender}
-              age={this.state.persons[3].age}>
-              I am from {this.state.persons[3].place}
-            </Person>
-          </div>)
-   }
+    if (this.state.showPerson) {
+      persons = (
+        <div className="Persons">
+          <Person
+            style={style}
+            name={this.state.persons[0].name}
+            gender={this.state.persons[0].gender}
+            click={() => this.switchdataHandler('Gazibur Rahman')}
+            change={this.inputHandler}
+            age={this.state.persons[0].age}>
+            I am from {this.state.persons[0].place}
+          </Person>
+          <Person
+            style={style}
+            name={this.state.persons[1].name}
+            click={this.switchdataHandler.bind(this, 'Junaid')}
+            gender={this.state.persons[1].gender}
+            age={this.state.persons[1].age}>
+            I am from {this.state.persons[1].place}
+          </Person>
+          <Person
+            name={this.state.persons[2].name}
+            click={() => this.switchdataHandler('Maaa!!')}
+            style={style}
+            gender={this.state.persons[2].gender}
+            age={this.state.persons[2].age}>
+            I am from {this.state.persons[2].place}
+          </Person>
+          <Person
+            name={this.state.persons[3].name}
+            style={style}
+            gender={this.state.persons[3].gender}
+            age={this.state.persons[3].age}>
+            I am from {this.state.persons[3].place}
+          </Person>
+        </div>
+      );
+    }
     return (
       <div className="App">
         <h1>Waalaikumas-salam-warahmatullah-e-wabarakatuhu</h1>
@@ -152,7 +154,7 @@ class App extends Component {
           onClick={this.togglePersonHandler}>
           ToggleGazi
         </button>
-     {persons}
+        {persons}
       </div>
     );
   }
