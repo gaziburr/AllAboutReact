@@ -5,92 +5,50 @@ class App extends Component {
   state = {
     persons: [
       {
-        name: 'Gazibur Rahman',
+        id: '8ff8ht8',
+        name: 'gazibur rahman',
         age: 21,
         gender: 'male',
         place: 'lakhimpur',
       },
       {
+        id: '8ffh8t8',
         name: 'Junaid',
         age: 20,
         gender: 'male',
         place: 'sonitpur',
       },
       {
+        id: '8ff8tt8',
         name: 'azizulhoque',
         age: 31,
         gender: 'male',
         place: 'morigaon',
       },
-      {
-        name: 'johura khatun',
-        age: 55,
-        gender: 'female',
-        place: 'nagaon',
-      },
     ],
     showPerson: false,
   };
-  switchdataHandler = NewName => {
+  inputHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+    const person = {...this.state.persons[personIndex]};
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
     this.setState({
-      persons: [
-        {
-          name: NewName,
-          age: 16,
-          gender: 'male',
-          place: 'Muwamari',
-        },
-        {
-          name: 'Rofique',
-          age: 19,
-          gender: 'male',
-          place: 'moirabari',
-        },
-        {
-          name: 'azizulhoque',
-          age: 31,
-          gender: 'male',
-          place: 'morigaon',
-        },
-        {
-          name: 'johura khatun',
-          age: 55,
-          gender: 'female',
-          place: 'nagaon',
-        },
-      ],
+      persons,
     });
   };
-  inputHandler = e => {
-    this.setState({
-      persons: [
-        {
-          name: e.target.value,
-          age: 16,
-          gender: 'male',
-          place: 'Muwamari',
-        },
-        {
-          name: 'Rofique',
-          age: 19,
-          gender: 'male',
-          place: 'moirabari',
-        },
-        {
-          name: 'azizulhoque',
-          age: 31,
-          gender: 'male',
-          place: 'morigaon',
-        },
-        {
-          name: 'johura khatun',
-          age: 55,
-          gender: 'female',
-          place: 'nagaon',
-        },
-      ],
-    });
-  };
+deletePersonHandler = (event, id) => {
+ const personIndex = this.state.persons.findIndex(p => {
+ return p.id === id;
+ });
+ const persons = [...this.state.persons];
+ persons.splice(personIndex, 1);
+ this.setState({persons: persons});
+ };
   togglePersonHandler = () => {
     const doesShow = this.state.showPerson;
     this.setState({showPerson: !doesShow});
@@ -106,42 +64,23 @@ class App extends Component {
       backgroundColor: 'green',
     };
     let persons = null;
-
     if (this.state.showPerson) {
       persons = (
         <div className="Persons">
-          <Person
-            style={style}
-            name={this.state.persons[0].name}
-            gender={this.state.persons[0].gender}
-            click={() => this.switchdataHandler('Gazibur Rahman')}
-            change={this.inputHandler}
-            age={this.state.persons[0].age}>
-            I am from {this.state.persons[0].place}
-          </Person>
-          <Person
-            style={style}
-            name={this.state.persons[1].name}
-            click={this.switchdataHandler.bind(this, 'Junaid')}
-            gender={this.state.persons[1].gender}
-            age={this.state.persons[1].age}>
-            I am from {this.state.persons[1].place}
-          </Person>
-          <Person
-            name={this.state.persons[2].name}
-            click={() => this.switchdataHandler('Maaa!!')}
-            style={style}
-            gender={this.state.persons[2].gender}
-            age={this.state.persons[2].age}>
-            I am from {this.state.persons[2].place}
-          </Person>
-          <Person
-            name={this.state.persons[3].name}
-            style={style}
-            gender={this.state.persons[3].gender}
-            age={this.state.persons[3].age}>
-            I am from {this.state.persons[3].place}
-          </Person>
+          {this.state.persons.map(person => {
+            return (
+              <Person
+                style={style}
+                name={person.name}
+                gender={person.gender}
+                change={event => this.inputHandler(event, person.id)}
+             remove={event => this.deletePersonHandler(event, person.id)}
+                key={person.id}
+                age={person.age}>
+                I am from {person.place}
+              </Person>
+            );
+          })}
         </div>
       );
     }
@@ -152,12 +91,11 @@ class App extends Component {
           style={style}
           className="btn"
           onClick={this.togglePersonHandler}>
-          ToggleGazi
+          ToggleComponents
         </button>
         {persons}
       </div>
     );
   }
 }
-
 export default App;
