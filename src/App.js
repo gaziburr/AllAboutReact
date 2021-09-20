@@ -36,26 +36,26 @@ class App extends Component {
     person.name = event.target.value;
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-
     this.setState({
       persons,
     });
   };
-deletePersonHandler = (event, id) => {
- const personIndex = this.state.persons.findIndex(p => {
- return p.id === id;
- });
- const persons = [...this.state.persons];
- persons.splice(personIndex, 1);
- this.setState({persons: persons});
- };
+  deletePersonHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+    const persons = [...this.state.persons];//spread operator
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
+  };
   togglePersonHandler = () => {
     const doesShow = this.state.showPerson;
     this.setState({showPerson: !doesShow});
   };
   render() {
     const style = {
-      padding: '5px',
+      padding: '10px',
+     textAlign:'center',
       borderRadius: '7px',
       color: 'white',
       boxShadow:
@@ -74,7 +74,7 @@ deletePersonHandler = (event, id) => {
                 name={person.name}
                 gender={person.gender}
                 change={event => this.inputHandler(event, person.id)}
-             remove={event => this.deletePersonHandler(event, person.id)}
+                remove={event => this.deletePersonHandler(event, person.id)}
                 key={person.id}
                 age={person.age}>
                 I am from {person.place}
@@ -83,10 +83,13 @@ deletePersonHandler = (event, id) => {
           })}
         </div>
       );
+     style.backgroundColor="red"
+     style.color="yellow"
+     style.padding="5px"
     }
     return (
       <div className="App">
-        <h1>Waalaikumas-salam-warahmatullah-e-wabarakatuhu</h1>
+        <h1>hello, I am React , Do you want me🤗</h1>
         <button
           style={style}
           className="btn"
